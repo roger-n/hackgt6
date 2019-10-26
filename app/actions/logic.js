@@ -18,12 +18,13 @@ export function getKilometersBetweenCoordinates(coorsA, coorsB) {
 
 // Google maps API
 export async function getCoffeeWithinRadiusOfCoors(coors, radius, key) {
-  fetch(
+  return fetch(
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${coors.latitude},${coors.longitude}&key=${key}&radius=${radius}&keyword=coffee`
   )
     .then(response => response.json())
     .then(responseJson => {
       console.log(JSON.stringify(responseJson));
+      return responseJson;
     })
     .catch(error => {
       console.error(error);
