@@ -1,7 +1,20 @@
 import React, { Component } from "react";
+import { View, Text } from "react-native";
 import HomeView from "./HomeView";
 import { connect } from "react-redux";
 import { requestLocationPermission } from "../../actions/permissions";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { GooglePlacesInput } from "../../components/GooglePlacesInput";
+import { navigateToOptions } from "../../actions/navigationActions";
+
+const homePlace = {
+  description: "Home",
+  geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }
+};
+const workPlace = {
+  description: "Work",
+  geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }
+};
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -22,7 +35,11 @@ class HomeContainer extends Component {
   }
 
   render() {
-    return <HomeView {...this.props} />;
+    return (
+      <View>
+        <GooglePlacesInput onSelect={() => navigateToOptions()} />
+      </View>
+    );
   }
 }
 
