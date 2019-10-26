@@ -21,12 +21,17 @@ class HomeContainer extends Component {
     super(props);
   }
 
+  state = {
+    geolocation: {}
+  };
+
   async componentWillMount() {
     const hasLocationPosition = await requestLocationPermission();
     navigator.geolocation.getCurrentPosition(
       res => {
         console.log(res);
         console.log("here");
+        this.setState({ geolocation: res });
       },
       err => {
         console.log(err);
@@ -37,7 +42,15 @@ class HomeContainer extends Component {
   render() {
     return (
       <View>
-        <GooglePlacesInput onSelect={() => navigateToOptions()} />
+        <GooglePlacesInput
+          onSelect={({ data, details }) =>
+            navigateToOptions({
+              data,
+              details,
+              geolocation: this.state.geolocation
+            })
+          }
+        />
       </View>
     );
   }

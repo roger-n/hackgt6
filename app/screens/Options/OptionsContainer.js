@@ -4,23 +4,14 @@ import { connect } from "react-redux";
 
 class OptionsContainer extends Component {
   constructor(props) {
-    super(props);
+    super(props.navigation.state.params);
+    console.log("props");
+    console.log(JSON.stringify(this.props));
   }
 
   render() {
-    return <OptionsView {...this.props} />;
+    return <OptionsView data={this.props} />;
   }
 }
 
-function mapStateToProps() {
-  return {};
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    // onLogin: (un, pwd) => dispatch(loginActions.requestLogin(un, pwd))
-  };
-}
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OptionsContainer);
+export default OptionsContainer;

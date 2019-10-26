@@ -24,7 +24,7 @@ export const GooglePlacesInput = ({ onSelect }) => {
       onPress={(data, details = null) => {
         // 'details' is provided when fetchDetails = true
         console.log(data, details);
-        onSelect();
+        onSelect({ data, details });
       }}
       getDefaultValue={() => ""}
       query={{
