@@ -1,2 +1,2 @@
-import LoginContainer from './LoginContainer';
-export default LoginContainer;
+import whereToShell from './whereToShell';
+export default whereToShell;
