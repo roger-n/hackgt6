@@ -1,13 +1,14 @@
 import * as React from "react";
 import { Text, View, StyleSheet, Button, Alert, Image } from "react-native";
 import SelectMultiple from "react-native-select-multiple";
+import { navigateToHome } from "../../actions/navigationActions";
 
-const fruits = ["Starbucks", "Dunkin Donuts", "Carribou", "Gus's Best"];
-export default class whereToShell extends React.Component {
-  state = { selectedFruits: [] };
+const coffee = ["Starbucks", "Dunkin Donuts", "Carribou", "Gus's Best"];
+export default class WhereToShell extends React.Component {
+  state = { selectedcoffee: [] };
 
-  onSelectionsChange = selectedFruits => {
-    this.setState({ selectedFruits });
+  onSelectionsChange = selectedCoffee => {
+    this.setState({ selectedCoffee });
   };
   render() {
     return (
@@ -15,16 +16,15 @@ export default class whereToShell extends React.Component {
         <Text style={styles.title}>Bean.io</Text>
         <Text style={styles.paragraph}>Favorite Shops?</Text>
         <SelectMultiple
-          items={fruits}
-          selectedItems={this.state.selectedFruits}
+          items={coffee}
+          selectedItems={this.state.selectedCoffee}
           onSelectionsChange={this.onSelectionsChange}
         />
-        <Image style={styles.logo} source={require("coffee.png")} />
+        <Image style={styles.logo} source={require("./coffee.png")} />
         <Button
           title="Where's work?..."
           onPress={() => {
-            Alert.alert("Simple Button pressed");
-            this.setState({ color: "#000000" });
+            navigateToHome();
           }}
         />
       </View>
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     height: 128,
-    width: 128
+    width: 156
   }
 });
