@@ -12,13 +12,4 @@ class HomeContainer extends Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
-}
-function mapDispatchToProps() {
-  return {};
-}
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeContainer);
+export default HomeContainer;
