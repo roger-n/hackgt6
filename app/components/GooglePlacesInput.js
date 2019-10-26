@@ -16,7 +16,7 @@ export const GooglePlacesInput = ({ onSelect }) => {
     <GooglePlacesAutocomplete
       placeholder="Search"
       minLength={2} // minimum length of text to search
-      autoFocus={false}
+      autoFocus={true}
       returnKeyType={"search"} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
       listViewDisplayed="auto" // true/false/undefined
       fetchDetails={true}

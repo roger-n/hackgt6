@@ -22,7 +22,10 @@ class HomeContainer extends Component {
   }
 
   state = {
-    geolocation: {}
+    geolocation: {},
+    key: "AIzaSyD05_UZtGyhAhq-bhVxsAJ4gLRw1xCd8KY",
+    token:
+      "V3fGHROe6dgDcrCjNxyhyj0rXfsFMOBUq_e_FEhC5grIHWozn_HO7Fxm4WEWuA38nOoldEfhrl-FkJL0J0nECTSmqYg4aCrymuBX-DK3aGXvLirYKa6ZaVJVoX3hlKDXv-DbMp1hvc6KavieuG7sxDWkgdUPQ56KWUQeZaY6l0N_G8Bwiy_lxk_ujyslm00zGo8I0iAV4Ry9QtEA6UiyrKcnZoMc0fp3wTOC-NmsDKk."
   };
 
   async componentWillMount() {
@@ -47,7 +50,9 @@ class HomeContainer extends Component {
             navigateToOptions({
               data,
               details,
-              geolocation: this.state.geolocation
+              geolocation: this.state.geolocation,
+              key: this.state.key,
+              token: this.state.token
             })
           }
         />
