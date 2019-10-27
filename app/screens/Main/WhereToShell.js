@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View, StyleSheet, Button, Alert, Image } from "react-native";
 import SelectMultiple from "react-native-select-multiple";
-import { navigateToHome } from "../../actions/navigationActions";
+import { navigateToLocation } from "../../actions/navigationActions";
 
 const coffee = ["Starbucks", "Dunkin Donuts", "Carribou", "Gus's Best"];
 export default class WhereToShell extends React.Component {
@@ -14,18 +14,33 @@ export default class WhereToShell extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Bean.io</Text>
-        <Text style={styles.paragraph}>Favorite Shops?</Text>
-        <SelectMultiple
-          items={coffee}
-          selectedItems={this.state.selectedCoffee}
-          onSelectionsChange={this.onSelectionsChange}
-        />
-        <Button
-          title="Where's work?..."
-          onPress={() => {
-            navigateToHome();
+        <View style={{ marginBottom: 20 }}>
+          <View style={{ height: 40, backgroundColor: "#A9A9A9" }}>
+            <Text style={styles.paragraph}>Preferred Shops:</Text>
+          </View>
+          <SelectMultiple
+            items={coffee}
+            selectedItems={this.state.selectedCoffee}
+            onSelectionsChange={this.onSelectionsChange}
+          />
+        </View>
+        <View
+          width={160}
+          style={{
+            justifyContent: "center",
+            alignSelf: "center",
+            alignContent: "center",
+            alignItems: "center"
           }}
-        />
+        >
+          <Button
+            title="Destination?"
+            onPress={() => {
+              navigateToLocation();
+            }}
+            style={{ alignSelf: "center", marginBottom: 20 }}
+          />
+        </View>
         <Image style={styles.logo} source={require("./coffee.png")} />
       </View>
     );
@@ -47,7 +62,7 @@ const styles = StyleSheet.create({
     color: "white"
   },
   paragraph: {
-    margin: 24,
+    margin: 5,
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
