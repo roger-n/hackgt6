@@ -13,7 +13,7 @@ class LocationContainer extends Component {
     geolocation: {},
     key: "AIzaSyD05_UZtGyhAhq-bhVxsAJ4gLRw1xCd8KY",
     token:
-      "V3fGHROe6dgDcrCjNxyhyj0rXfsFMOBUq_e_FEhC5grIHWozn_HO7Fxm4WEWuA38nOoldEfhrl-FkJL0J0nECTSmqYg4aCrymuBX-DK3aGXvLirYKa6ZaVJVoX3hlKDXv-DbMp1hvc6KavieuG7sxDWkgdUPQ56KWUQeZaY6l0N_G8Bwiy_lxk_ujyslm00zGo8I0iAV4Ry9QtEA6UiyrKcnZoMc0fp3wTOC-NmsDKk."
+      "HBvqn4baTq8WzTP7T0L3aTk8dH5d90t5ZDlAbBNkqAGU0ASPsVGYDEcpflQR_d9HoAjnd29I5jjF0zIir5Njigg4Rkq_prPNq0YdfAi4QjcbtfgdwFh7gjRuTpHItDELWnBg-AekasN3FM4gq0cbf0A4QBQyusj7MSn9Kgl1N-tLMNqCRMLDbMyauKRiWoAAhCmth-zM15TBQdIbNDp20iA6s33q8Alpi4QNaxAcxnU."
   };
 
   async componentWillMount() {

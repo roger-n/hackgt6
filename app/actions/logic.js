@@ -36,9 +36,8 @@ export async function getCoffeeAroundLocation(coors, geolocation, key) {
   return await getCoffeeWithinRadiusOfCoors(coors, radius, key);
 }
 
-// export async function get(coors, geolocation, key) {}
-
 export async function getFinalTravelTimes(coors, geolocation, key, token) {
+  console.log("token: " + token);
   let baseTime = 0;
   await fetch(
     `https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World/solve?stops=${geolocation.coords.longitude},${geolocation.coords.latitude};${coors.lng},${coors.lat}&token=${token}&f=json`
@@ -59,8 +58,13 @@ export async function getFinalTravelTimes(coors, geolocation, key, token) {
           return await fetch(
             `https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World/solve?stops=${geolocation.coords.longitude},${geolocation.coords.latitude};${element.geometry.location.lng},${element.geometry.location.lat};${coors.lng},${coors.lat}&token=${token}&f=json`
           )
-            .then(response => response.json())
+            .then(response => {
+              console.log(response);
+              return response.json();
+            })
             .then(responseJson => {
+              console.log("response:");
+              console.log(responseJson);
               console.log("location: " + element.name + " " + element.vicinity);
               element.totalTime = responseJson.directions[0].summary.totalTime;
               element.extraTime = element.totalTime - baseTime;

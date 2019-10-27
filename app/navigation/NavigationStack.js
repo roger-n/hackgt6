@@ -1,14 +1,14 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import Login from "app/screens/Login";
 import Home from "app/screens/Home";
 import Options from "app/screens/Options";
 import Location from "app/screens/Location";
+import Main from "app/screens/Main";
 
 const RNApp = createStackNavigator(
   {
-    Login: {
-      screen: Login,
+    Main: {
+      screen: Main,
       navigationOptions: { header: null, gesturesEnabled: false }
     },
     Home: {
@@ -25,7 +25,7 @@ const RNApp = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: "Main"
   }
 );
 

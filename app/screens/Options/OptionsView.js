@@ -1,12 +1,26 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  ListView
+} from "react-native";
 import PropTypes from "prop-types";
+import { TabView, SceneMap } from "react-native-tab-view";
+
 import {
   getCoffeeAroundLocation,
   getSortedShopsByExtraTravelTime,
   getFinalTravelTimes,
   getWaitTime
 } from "../../actions/logic";
+
+import NormalList from "../../components/options/NormalList";
+
+const BadList = () => <View style={{ backgroundColor: "#673ab7" }} />;
+
+const TerribleList = () => <View style={{ backgroundColor: "#673ab7" }} />;
 
 export class OptionsView extends React.Component {
   state = {
@@ -15,14 +29,20 @@ export class OptionsView extends React.Component {
     geolocation: {},
     key: "",
     results: [],
-    sortedResults: []
+    sortedResults: [],
+    index: 0,
+    routes: [
+      { key: "first", title: "I like my job" },
+      { key: "second", title: "I dislike my job" },
+      { key: "third", title: "I wanna quit" }
+    ]
   };
   constructor(props) {
     super(props);
   }
 
-  setResults = results => {
-    this.setState({ results });
+  setSortedResults = res => {
+    this.setState({ sortedResults: res });
   };
 
   componentWillMount() {
@@ -49,10 +69,12 @@ export class OptionsView extends React.Component {
       this.state.key,
       this.state.token
     ).then(results => {
-      console.log(results + "helllllllloooooooo");
+      this.setSortedResults(results);
+      this.setState({ sortedResults: results });
+      console.log(this.state.results + "helllllllloooooooo");
       for (let i = 0; i < results.length; i++) {
-        console.log(results[i]);
-        console.log(JSON.stringify(results[i]));
+        console.log(this.state.sortedResults[i]);
+        console.log(JSON.stringify(this.state.sortedResults[i]));
       }
     });
     console.log("\n\n\n\n");
@@ -62,10 +84,26 @@ export class OptionsView extends React.Component {
   }
 
   render() {
-    return (
-      <View>
-        <Text>Options</Text>
-      </View>
+    return this.state.sortedResults.length == 0 ? (
+      <View />
+    ) : (
+      <TabView
+        style={{ backgroundColor: "#853721" }}
+        navigationState={this.state}
+        renderScene={({ route, jumpTo }) => {
+          switch (route.key) {
+            case "first":
+              return <NormalList data={this.state.sortedResults} />;
+            case "second":
+              return <BadList />;
+            case "third":
+              return <TerribleList />;
+          }
+        }}
+        onIndexChange={index => this.setState({ index })}
+        initialLayout={{ width: Dimensions.get("window").width }}
+        swipeEnabled={true}
+      />
     );
   }
 }
