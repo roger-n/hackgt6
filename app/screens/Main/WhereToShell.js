@@ -20,13 +20,13 @@ export default class WhereToShell extends React.Component {
           selectedItems={this.state.selectedCoffee}
           onSelectionsChange={this.onSelectionsChange}
         />
-        <Image style={styles.logo} source={require("./coffee.png")} />
         <Button
           title="Where's work?..."
           onPress={() => {
             navigateToHome();
           }}
         />
+        <Image style={styles.logo} source={require("./coffee.png")} />
       </View>
     );
   }
