@@ -6,6 +6,7 @@ import {
   Dimensions,
   ListView
 } from "react-native";
+import { navigateToMapStuff } from "../../actions/navigationActions";
 
 export default class NormalList extends Component {
   constructor(props) {
@@ -36,6 +37,9 @@ export default class NormalList extends Component {
                 backgroundColor: "white",
                 borderBottomWidth: 5,
                 borderColor: "#853721"
+              }}
+              onPress={data => {
+                navigateToMapStuff(data);
               }}
             >
               <Text style={{ color: "black", fontSize: 20 }}>

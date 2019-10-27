@@ -10,3 +10,7 @@ export function navigateToOptions(props) {
 export function navigateToLocation(props) {
   NavigationService.navigate("Location", props);
 }
+
+export function navigateToMapStuff(props) {
+  NavigationService.navigate("MapStuff", props);
+}

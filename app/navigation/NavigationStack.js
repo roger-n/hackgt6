@@ -1,6 +1,5 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import Home from "app/screens/Home";
 import Options from "app/screens/Options";
 import Location from "app/screens/Location";
 import Main from "app/screens/Main";
@@ -11,16 +10,16 @@ const RNApp = createStackNavigator(
       screen: Main,
       navigationOptions: { header: null, gesturesEnabled: false }
     },
-    Home: {
-      screen: Home,
-      navigationOptions: { header: null, gesturesEnabled: false }
-    },
     Options: {
       screen: Options,
       navigationOptions: { header: null, gesturesEnabled: false }
     },
     Location: {
       screen: Location,
+      navigationOptions: { header: null, gesturesEnabled: false }
+    },
+    MapStuff: {
+      screen: MapStuff,
       navigationOptions: { header: null, gesturesEnabled: false }
     }
   },
