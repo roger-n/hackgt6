@@ -2,7 +2,7 @@ import MapView, { Polyline } from "react-native-maps";
 import React, { Component } from "react";
 
 export function MapRoute(data) {
-  let coords = data.cordsPath;
+  let coords = data.coordsPath;
   return (
     <MapView
       initialRegion={{
@@ -19,4 +19,9 @@ export function MapRoute(data) {
       />
     </MapView>
   );
+}
+function toPolyLine(inputArray) {
+  for (var i = 0; i < inputArray.length; i++) {
+    inputArray[i] = { lat: inputArray[i][0], lng: inputArray[i][1] };
+  }
 }
