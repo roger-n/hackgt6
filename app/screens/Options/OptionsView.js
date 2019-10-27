@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import {
   getCoffeeAroundLocation,
+  getSortedShopsByExtraTravelTime,
   getFinalTravelTimes
 } from "../../actions/logic";
 
@@ -11,11 +12,17 @@ export class OptionsView extends React.Component {
     data: {},
     details: {},
     geolocation: {},
-    key: ""
+    key: "",
+    results: [],
+    sortedResults: []
   };
   constructor(props) {
     super(props);
   }
+
+  setResults = results => {
+    this.setState({ results });
+  };
 
   componentWillMount() {
     console.log("my props");
@@ -34,20 +41,19 @@ export class OptionsView extends React.Component {
     console.log(JSON.stringify(this.state.data));
     console.log(JSON.stringify(this.state.details));
     console.log(JSON.stringify(this.state.details.geometry.location));
-    console.log(JSON.stringify(this.state.geolocation));
-    await getCoffeeAroundLocation(
-      this.state.details.geometry.location,
-      this.state.geolocation,
-      this.state.key
-    ).then(res => {
-      console.log(JSON.stringify(res));
-    });
-    await getFinalTravelTimes(
+    console.log(JSON.stringify(this.state.geolocation) + "\n\n");
+    await getSortedShopsByExtraTravelTime(
       this.state.details.geometry.location,
       this.state.geolocation,
       this.state.key,
       this.state.token
-    );
+    ).then(results => {
+      console.log(results + "helllllllloooooooo");
+      for (let i = 0; i < results.length; i++) {
+        console.log(results[i]);
+        console.log(JSON.stringify(results[i]));
+      }
+    });
   }
 
   render() {

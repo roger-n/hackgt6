@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
-import HomeView from "./HomeView";
-import { connect } from "react-redux";
 import { requestLocationPermission } from "../../actions/permissions";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GooglePlacesInput } from "../../components/GooglePlacesInput";
 import { navigateToOptions } from "../../actions/navigationActions";
 
-class HomeContainer extends Component {
+class LocationContainer extends Component {
   constructor(props) {
     super(props);
   }
@@ -52,13 +49,4 @@ class HomeContainer extends Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
-}
-function mapDispatchToProps() {
-  return {};
-}
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeContainer);
+export default LocationContainer;

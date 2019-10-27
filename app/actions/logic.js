@@ -51,24 +51,46 @@ export async function getFinalTravelTimes(coors, geolocation, key, token) {
     .catch(error => {
       console.error(error);
     });
-  await getCoffeeAroundLocation(coors, geolocation, key).then(async res => {
-    const results = res.results;
-    results.forEach(async element => {
-      await fetch(
-        `https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World/solve?stops=${geolocation.coords.longitude},${geolocation.coords.latitude};${element.geometry.location.lng},${element.geometry.location.lat};${coors.lng},${coors.lat}&token=${token}&f=json`
-      )
-        .then(response => response.json())
-        .then(responseJson => {
-          console.log("location: " + element.name + " " + element.vicinity);
-          element.totalTime = responseJson.directions[0].summary.totalTime;
-          element.extraTime = element.totalTime - baseTime;
-          console.log("total time: " + element.totalTime);
-          console.log("extra time: " + extra.extraTime);
+  return await getCoffeeAroundLocation(coors, geolocation, key).then(
+    async res => {
+      const results = res.results;
+      return await Promise.all(
+        results.map(async element => {
+          return await fetch(
+            `https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World/solve?stops=${geolocation.coords.longitude},${geolocation.coords.latitude};${element.geometry.location.lng},${element.geometry.location.lat};${coors.lng},${coors.lat}&token=${token}&f=json`
+          )
+            .then(response => response.json())
+            .then(responseJson => {
+              console.log("location: " + element.name + " " + element.vicinity);
+              element.totalTime = responseJson.directions[0].summary.totalTime;
+              element.extraTime = element.totalTime - baseTime;
+              console.log("total time: " + element.totalTime);
+              console.log("extra time: " + element.extraTime);
+              return element;
+            })
+            .catch(error => {
+              console.error(error);
+            });
         })
-        .catch(error => {
-          console.error(error);
-        });
-    });
-    results.sort((a, b) => (a.extraTime < b.extraTime ? 1 : -1));
-  });
+      );
+    }
+  );
+}
+
+export async function getSortedShopsByExtraTravelTime(
+  coors,
+  geolocation,
+  key,
+  token
+) {
+  return await getFinalTravelTimes(coors, geolocation, key, token).then(
+    results => {
+      console.log(results);
+      results.sort((a, b) => (a.extraTime > b.extraTime ? 1 : -1));
+      for (let i = 0; i < results.length; i++) {
+        console.log(JSON.stringify("results " + JSON.stringify(results[i])));
+      }
+      return results;
+    }
+  );
 }

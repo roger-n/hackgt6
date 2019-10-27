@@ -10,3 +10,7 @@ export function navigateToHome(params) {
 export function navigateToOptions(props) {
   NavigationService.navigate("Options", props);
 }
+
+export function navigateToLocation(props) {
+  NavigationService.navigate("Location", props);
+}
