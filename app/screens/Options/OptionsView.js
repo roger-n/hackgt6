@@ -12,6 +12,7 @@ import { TabView, SceneMap } from "react-native-tab-view";
 import {
   getCoffeeAroundLocation,
   getSortedShopsByExtraTravelTime,
+  getSortedShopsByWorstExtraTravelTime,
   getFinalTravelTimes,
   getWaitTime
 } from "../../actions/logic";
@@ -30,6 +31,7 @@ export class OptionsView extends React.Component {
     key: "",
     results: [],
     sortedResults: [],
+    worstSortedResults: [],
     index: 0,
     routes: [
       { key: "first", title: "I like my job" },
@@ -71,16 +73,30 @@ export class OptionsView extends React.Component {
     ).then(results => {
       this.setSortedResults(results);
       this.setState({ sortedResults: results });
-      console.log(this.state.results + "helllllllloooooooo");
-      for (let i = 0; i < results.length; i++) {
-        console.log(this.state.sortedResults[i]);
-        console.log(JSON.stringify(this.state.sortedResults[i]));
-      }
+      // console.log(this.state.results + "helllllllloooooooo");
+      // for (let i = 0; i < results.length; i++) {
+      //   console.log(this.state.sortedResults[i]);
+      //   console.log(JSON.stringify(this.state.sortedResults[i]));
+      // }
     });
     console.log("\n\n\n\n");
-    await getWaitTime("ChIJjTu-9GYE9YgRLuE7sCZXJGM").then(res =>
-      console.log(res)
-    );
+    await getSortedShopsByWorstExtraTravelTime(
+      this.state.details.geometry.location,
+      this.state.geolocation,
+      this.state.key,
+      this.state.token
+    ).then(results => {
+      this.setSortedResults(results);
+      this.setState({ worstSortedResults: results });
+      console.log(this.state.results + "helllllllloooooooo");
+      for (let i = 0; i < results.length; i++) {
+        console.log(this.state.worstSortedResults[i]);
+        console.log(JSON.stringify(this.state.worstSortedResults[i]));
+      }
+    });
+    // await getWaitTime("ChIJjTu-9GYE9YgRLuE7sCZXJGM").then(res =>
+    //   console.log(res)
+    // );
   }
 
   render() {
