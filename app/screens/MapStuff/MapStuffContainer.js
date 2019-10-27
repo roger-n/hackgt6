@@ -1,4 +1,5 @@
 import { MapRoute } from "../../components/options/MapRoute";
+import React, { Component } from "react";
 
 export default class MapStuffContainer extends Component {
   constructor(props) {
@@ -6,4 +7,8 @@ export default class MapStuffContainer extends Component {
   }
 
   state = {};
+
+  render() {
+    return <MapRoute />;
+  }
 }

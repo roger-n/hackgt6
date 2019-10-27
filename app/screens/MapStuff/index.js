@@ -1,2 +1,2 @@
-import MapStuffContainer from "./LocationContainer";
+import MapStuffContainer from "./MapStuffContainer";
 export default MapStuffContainer;

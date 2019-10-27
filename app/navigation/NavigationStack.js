@@ -3,6 +3,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import Options from "app/screens/Options";
 import Location from "app/screens/Location";
 import Main from "app/screens/Main";
+import MapStuff from "app/screens/MapStuff";
 
 const RNApp = createStackNavigator(
   {

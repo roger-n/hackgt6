@@ -69,7 +69,7 @@ export async function getFinalTravelTimes(coors, geolocation, key, token) {
               element.totalTime = responseJson.directions[0].summary.totalTime;
               element.extraTime = element.totalTime - baseTime;
               element.coordsPath =
-                responseJson.routes.features[1].geometry.paths;
+                responseJson.routes.features[0].geometry.paths;
               console.log("total time: " + element.totalTime);
               console.log("extra time: " + element.extraTime);
               console.log("coordsPath: " + element.coordsPath);

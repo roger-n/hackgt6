@@ -1,6 +1,8 @@
 import MapView, { Polyline } from "react-native-maps";
+import React, { Component } from "react";
 
 export function MapRoute(data) {
+  let coords = data.cordsPath;
   return (
     <MapView
       initialRegion={{
