@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import {
   getCoffeeAroundLocation,
   getSortedShopsByExtraTravelTime,
-  getFinalTravelTimes
+  getFinalTravelTimes,
+  getWaitTime
 } from "../../actions/logic";
 
 export class OptionsView extends React.Component {
@@ -54,6 +55,10 @@ export class OptionsView extends React.Component {
         console.log(JSON.stringify(results[i]));
       }
     });
+    console.log("\n\n\n\n");
+    await getWaitTime("ChIJjTu-9GYE9YgRLuE7sCZXJGM").then(res =>
+      console.log(res)
+    );
   }
 
   render() {

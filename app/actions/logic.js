@@ -77,6 +77,16 @@ export async function getFinalTravelTimes(coors, geolocation, key, token) {
   );
 }
 
+export async function getWaitTime(place_id) {
+  return await fetch(
+    "https://us-central1-hackgt6-257106.cloudfunctions.net/getWaitTime/",
+    {
+      method: "POST",
+      body: JSON.stringify({ place_id: place_id })
+    }
+  );
+}
+
 export async function getSortedShopsByExtraTravelTime(
   coors,
   geolocation,
@@ -94,3 +104,7 @@ export async function getSortedShopsByExtraTravelTime(
     }
   );
 }
+
+// export async function getSortedByWorstTravelTime {
+
+// }
